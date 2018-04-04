@@ -4,6 +4,7 @@ class UsersController < Clearance::SessionsController
 	end 
 
 	def show
+		redirect_to "/checkboxes"
 	end
 
 	def create
@@ -11,7 +12,7 @@ class UsersController < Clearance::SessionsController
 
 	    if @user.save
 	      sign_in @user
-	      redirect_to user_path(@user)
+	      redirect_to getcheck_path(@user)
 	    else
 	      render template: "users/new"
 	    end

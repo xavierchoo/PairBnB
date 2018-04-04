@@ -1,0 +1,15 @@
+<%= form_for @new_rent, url: register_rent_path do |f| %>
+	<%= f.label :location %>
+	<br>
+	<%= f.text_field :location %>
+	<br>
+	<%= f.label :style %>
+	<br>
+	<%= f.text_field :style %>
+	<br>
+	<%= f.label :room %>
+	<br>
+	<%= f.text_field :room %>
+	<br>
+	<%= f.submit %>
+<% end %>

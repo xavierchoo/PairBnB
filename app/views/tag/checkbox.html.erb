@@ -1,0 +1,91 @@
+ <!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet"  href="style.css">
+
+<title>AirBnB</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a data-turbolinks="false" class="navbar-brand" href="#">Housify</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a data-turbolinks="false" class="nav-link" href="#">About us <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a data-turbolinks="false" class="nav-link" href="/rent">Rent your property <span class="sr-only">(current)</span></a>
+      </li>
+     <!--  <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li> -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          filter
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <%= form_tag("/checkboxes", method: "get", class: "dropdown-item") do %>
+            <p>Location:</p>
+            <%= radio_button_tag(:singapore, "singapore", false, name: "tag[location]") %>
+            <%= label_tag(:location, "Singapore") %>
+            <%= radio_button_tag(:malaysia, "malaysia", false, name: "tag[location]") %>
+            <%= label_tag(:location, "Malaysia") %>
+
+            <p>House types:</p>
+            <%= radio_button_tag(:bungalow, "Bungalow", false, name: "tag[style]") %>
+            <%= label_tag(:style, "bungalow") %>
+            <%= radio_button_tag(:terrace, "Terrace", false, name: "tag[style]") %>
+            <%= label_tag(:style, "terrace") %>
+
+            <p>Number of rooms:</p>
+            <%= radio_button_tag(:one, "1", false, name: "tag[room]") %>
+            <%= label_tag(:room, "one") %>
+            <%= radio_button_tag(:two, "2", false, name: "tag[room]") %>
+            <%= label_tag(:room, "two") %>
+            <%= radio_button_tag(:three, "3", false, name: "tag[room]") %>
+            <%= label_tag(:room, "three") %>
+            <%= radio_button_tag(:four, "4", false, name: "tag[room]") %>
+            <%= label_tag(:room, "four") %>
+            <%= submit_tag("Search") %>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  </nav>
+
+  <% if @products.present? %>
+    <% @products.each do |product| %>
+      <div class='arrangement'>
+      <%= p 'location :'+ product.location %><br>
+      <%= p 'type :'+ product.style %><br>
+      <%= p 'number of rooms :'+ product.room %><br>
+      <br>
+      </div>
+    <% end %>
+  <% else %>
+    <% @lists.each do |list| %>
+    <div class='arrangement'>
+      <print>location :</print> <%=list.location if !list.location.nil?%><br>
+      <print> type :</print><%=list.style if !list.style.nil?%><br>
+      <print> number of rooms :</print><%=list.room if !list.room.nil?%><br>
+      <br>
+      </div>
+    <% end %>
+    <%= link_to "sign out",sign_out_path, method: :delete %><br>
+  <% end %>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html> 
